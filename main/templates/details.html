@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+<div class="Container">
+	<div class="row">
+{% block body %}
+        <div class="container-fluid detailtoppadding">
+<div class="col-sm-3 mid picwid">
+    <div class="thumbnail">
+<img src="{{TeamMembers.Pic.url}}">
+   <h4 text-size-details>{{TeamMembers.Name}}</h4>
+    </div>
+    <h4 class="text-size-details3" >{{TeamMembers.Address }}</h4>
+</div>
+      <div class="col-sm-9">
+          <div class="col-sm-4">
+              <h5 class="text-size-details1">Name:</h5><h4 class="detailname">{{TeamMembers.Name}}</h4>
+              <h5 class="text-size-details">Designation:</h5><h4 class="detailname">{{TeamMembers.Designation}}</h4>
+        <h4 class="text-size-details">Date-of-Birth:</h4><h4 class="detailname">{{TeamMembers.DOB}}</h4>
+        <h4 class="text-size-details">Team:</h4><h4 class="detailname">{{TeamMembers.Team}}</h4>
+        <h4 class="text-size-details">Email:</h4><h4 class="detailname">{{TeamMembers.Email }}</h4>
+        <h4 class="text-size-details">Year of passing:</h4><h4 class="detailname">{{TeamMembers.Year_of_passing }}</h4>
+               </div>
+          <div class="col-sm-1">
+          </div>
+          <div class="col-sm-4">
+        <h4 class="text-size-details1">Date of joining CCI:</h4><h4 class="detailname">{{TeamMembers.Date_of_joining_CCI }}</h4>
+        <h4 class="text-size-details">Date of joining Team:</h4><h4 class="detailname">{{TeamMembers.Date_of_joining_Team }}</h4>
+        <h4 class="text-size-details">Phone No:</h4><h4 class="detailname">{{TeamMembers.Phone_No }}</h4>
+        <h4 class="text-size-details">Skype Id:</h4><h4 class="detailname">{{TeamMembers.Skype_Id }}</h4>
+        <!--<h4 class="text-size-details">Address:</h4><h4 class="detailname">{{TeamMembers.Address }}</h4>-->
+        <h4 class="text-size-details">Qualification:</h4><h4 class="detailname">{{TeamMembers.Qualification  }}</h4>
+        <h4 class="text-size-details">Technologies:</h4><h4 class="detailname">{{TeamMembers.Technologies  }}</h4>
+
+            </div>
+           <div class="col-sm-9">
+        <h4 class="text-size-details">Description:</h4><h4 class="detailname">{{TeamMembers.Description  }}</h4>
+      </div>
+      </div>
+
+</div>
+{% endblock %}
+    </div>
+</div>

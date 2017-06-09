@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+
+{% block body %}
+     <div class="Team-Details-info">
+		<div class="container-fluid">
+			<div class="username">
+			  <div class="col-sm-10">
+                <h2>Team Information</h2>
+		      </div>
+				<div class="col-sm-2 usetop-pad">
+					{% if user.is_authenticated %}
+        				<p class="usepadding">Welcome: {{ user.username }}     </p>
+    				{% endif %}
+				</div>
+			</div>
+    </div>
+	</div>
+    <div class="container-fluid space">
+        <div class="row">
+            <div class="col-sm-6">
+                 <div class="col-sm-2 teamweight">
+              <h4> TeamName:</h4>
+                 </div>
+                      <div class="col-sm-4"><h4> {{TeamsDetail.TeamName}}  </h4>
+                      </div>
+            </div>
+	        <div class="col-sm-6">
+                    <div class="col-sm-2 teamweight">
+                        <h4>TeamLead:</h4> </div> <div class="col-sm-4"> <h4> {{TeamsDetail.TeamLead}}   </h4>
+            </div>
+            </div>
+        </div>
+         <div class="row">
+            <div class="col-sm-6">
+                <div class="col-sm-2 teamweight">     <h4>ClientName: </h4> </div> <div class="col-sm-4"> <h4>{{TeamsDetail.ClientName}}   </h4>
+            </div></div>
+                <div class="col-sm-6">
+                    <div class="col-sm-2 teamweight">   <h4>Tech: </h4></div> <div class="col-sm-4"> <h4>  {{TeamsDetail.Tech}}   </h4>
+                </div></div>
+         </div>
+    </div>
+  <div class="Team-Details-info">
+		<div class="container-fluid">
+             <div class="col-sm-12">
+        <h2>Team-Members</h2>
+             </div>
+		</div>
+    </div>
+{% if All_TeamMembers %}
+	<ul>
+		{% for AllTeams in All_TeamMembers %}
+
+      <div class="space">
+          <div class="col-sm-12">
+		<div class="profile">
+             <li>
+        <a href="{% url 'main:TeamMemberDetails' AllTeams.id %}">{{AllTeams.Name}}</a>
+ </li>
+         </div>
+        </div>
+
+</div>
+
+	{% endfor %}
+	</ul>
+{% else %}
+	<h3>you don't have any Team Members</h3>
+{% endif %}
+
+
+  </div>
+{% endblock %}
+

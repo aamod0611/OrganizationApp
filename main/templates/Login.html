@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block body %}
+<!--<form method="post" action=".?next={{ redirect_to }}"> {% csrf_token %}-->
+<!--if you want errot message to display then i have to remove action from form .-->
+
+<form method="post" action=""> {% csrf_token %}
+    <div class="container">
+		<div class="row mgn-top">
+            <div class="logo">
+
+</div>
+			<div class="group-form-space col-sm-4 col-sm-offset-4">
+                <h2 class="loginfont">Login</h2>
+                <div class="error midd">
+                <div class="row">
+    <input type="text" name="username" placeholder="Username"/> {{ login_form }}
+            </div>
+                <div class="row grp-btn">
+    <input type="password" name="password" placeholder="Password"/>
+                </div>
+    <input class="grp-btn1 login-btn"  type="submit" value="Login"/>
+            </div>
+<div class="clearfix mobile has-sms">
+    <p class="signup-helper">
+      New to Cci?
+      <a id="login-signup-link" href="{% url 'main:registration' %}">Create an account »</a>
+    </p>
+  </div>
+            </div>
+        </div>
+    </div>
+
+</form>
+{% endblock %}
+
+
+
+
+
+

@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+
+{% block body %}
+  <div class="Team-Details-info">
+		<div class="container-fluid">
+			<div class="username">
+			  <div class="col-sm-10">
+                <h2>Groups</h2>
+		      </div>
+				<div class="col-sm-2 usetop-pad">
+					{% if user.is_authenticated %}
+        				<p class="usepadding">Welcome: {{ user.username }}     </p>
+    				{% endif %}
+				</div>
+			</div>
+    </div>
+  </div>
+<div class="container tabstop">
+  <ul class="nav nav-tabs">
+    <li class="active"><a data-toggle="tab" href="#home">Teams</a></li>
+    <li><a data-toggle="tab" href="#menu1">Team-Members</a></li>
+  </ul>
+	<div class="tab-content">
+     <div id="home" class="tab-pane fade in active">
+{% if GroupTeams %}
+	<ul>
+		{% for AllTeams in GroupTeams %}
+
+			<div class="col-sm-4 indpic">
+				<div class="space">
+				<div class="thumbnail">
+
+			 <a href="{% url 'main:TeamDetails' AllTeams.id %}">{{AllTeams.TeamName}}</a><span class="badge flt-rgt">{{AllTeams.teammembers_set.count}}</span>
+			{% if request.user.is_superuser %}
+			<form action="{% url 'main:Teams-delete' AllTeams.id %}" method="post" enctype="multipart/form-data">
+			{% csrf_token %}
+				<button class="group-del" type="submit">
+				<span class="glyphicon glyphicon-trash"></span>
+			</button>
+
+			</form>
+
+			<form action="{% url 'main:Team-update' AllTeams.id %}" method="get" enctype="multipart/form-data">
+			{% csrf_token %}
+
+			<button class="group-upd" type="submit" >
+			<span class="glyphicon glyphicon-pencil"></span>
+			</button>
+
+          </form>
+{% else %}
+
+{% endif %}
+         </div>
+        </div>
+		</div>
+	{% endfor %}
+	</ul>
+{% else %}
+	<h3>you don't have any Teams</h3>
+{% endif %}
+		 </div>
+	<div id="menu1" class="tab-pane fade">
+{% if all %}
+	<ul>
+{% for AllTeams in all %}
+<div class="col-sm-2 indpic2">
+	<div class="space">
+		<div class="thumbnail">
+			<img src="{{AllTeams.Pic.url}}">
+			<div class="namecent">
+              <a href="{% url 'main:details' AllTeams.id %}">{{AllTeams.Name}}</a>
+			</div>
+		</div>
+    </div>
+</div>
+ {% endfor %}
+		</ul>
+		{% else %}
+
+{% endif %}
+	</div>
+	</div>
+</div>
+
+{% endblock %}

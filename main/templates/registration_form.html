@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block body %}
+{% if user.is_authenticated %}
+
+{% else %}
+<form class="form-horizontal" action="" method="post" enctype="multipart/form-data">
+	<div class="container">
+		<div class="row mgn-top">
+            <div class="logo">
+
+</div>
+	{% csrf_token %}
+    <div class="container">
+		<div class="row">
+			<div class="group-form-space col-sm-4 col-sm-offset-4">
+				<h2 class="loginfont">Create an account</h2>
+
+	{% include 'registration_template.html' %}
+	<button class="grp-btn1" type="submit">submit</button> {{registration_form}}
+            </div>
+        </div>
+    </div>
+		</div>
+	</div>
+</form>
+
+{% endif %}
+
+{% endblock %}

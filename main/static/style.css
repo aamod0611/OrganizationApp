@@ -1,0 +1,361 @@
+.navbar {
+    border-radius: 0;
+    margin-bottom: 0px;
+}
+
+.indform{
+        text-align: center;
+}
+
+.indpic img {
+    height: 200px;
+    width: 100%;
+}
+
+.indpic1 {
+    width: 13.666667%;
+}
+
+.mid{
+text-align: center;
+}
+.space{
+    padding-bottom: 20px;
+}
+.Team-Details-info{
+ background: url("images/bg.gif");
+    padding: 1px;
+background-color: wheat;
+}
+
+.space{
+padding-top: 20px;
+}
+
+.del-btn{
+    float: right;
+    margin-right: 56px;
+}
+
+.navbar-inverse {
+    background-color: whitesmoke;
+    border-color: whitesmoke;
+}
+
+.navbar-inverse .navbar-nav>li>a {
+    color: black;
+}
+
+h2{
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.navbar-inverse .navbar-nav>li>a:hover {
+    color: #9EB929;
+    }
+    .navbar-inverse .navbar-brand {
+    color: #9EB929;
+}
+
+.thumbnail {
+    background-color: whitesmoke;
+}
+a:focus, a:hover {
+    color: #9EB929;
+}
+a{
+    color: black;
+}
+
+.group-form-space{
+   margin-top: 30px;
+    padding-top: 30px;
+    padding-bottom: 70px;
+    background-color: whitesmoke;
+    padding-left: 40px;
+    border-radius: 8px;
+}
+.grp-btn{
+ margin-top: 20px;
+}
+
+
+.grp-btn1{
+background-color: #ccd6dd;
+    background-repeat: no-repeat;
+    border: 1px solid #e6ecf0;
+    border-radius: 4px;
+    color: #66757f;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: normal;
+    padding: 8px 16px;
+    position: relative;
+    color: #fff;
+    background-color: #a4be33;
+    background-image: linear-gradient(rgba(0,0,0,0),rgba(0,0,0,0.05));
+    border: 1px solid #a4be33;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.15);
+    margin-top: 20px;
+}
+
+.teamMember-del{
+    float: right;
+    margin-right: 68px;
+    margin-top: -13px;
+}
+
+.upd-btn{
+float: right;
+margin-top: -34px;
+margin-right: 140px;
+}
+.teamMember-upd{
+margin-left: 55px;
+margin-top: -13px;
+}
+.group-del{
+background-color: transparent;
+border: 0;
+float: right;
+margin-top: -20px;
+}
+.group-upd{
+background-color: transparent;
+border: 0;
+float: right;
+margin-top: -34px;
+margin-right: 20px;
+}
+.navbar-inverse .navbar-brand:hover {
+    color: #9EB929;
+}
+.midd{
+    padding-left: 14px;
+    }
+   .login-btn{
+    margin-left: -14px;
+    }
+
+.has-sms{
+    padding: 20px 12px 20px 2px;
+    font-size: 14px;
+    color: #657786;
+    }
+.loginfont{
+    font-size: 24px;
+    line-height: .8;
+    color: black;
+    font-family: sans-serif;
+    font-weight: 700;
+    }
+.logo{
+ background-image: url("images/logo.png");
+     width: 212px;
+    height: 37px;
+    margin-top: 15px;
+    background-size: 216px 41px;
+    margin-left: 475px;
+}
+.mgn-top{
+margin-top:135px;
+}
+.Team-Details-info h2{
+font-size: 22px;
+}
+.logoutglyp{
+margin-right: 4px;
+}
+.teamweight h4{
+font-weight: 600;
+}
+.namecent{
+    margin: 7px 0px;
+    text-align: center;
+    }
+
+.usepadding{
+    font-weight: 600;
+}
+.usetop-pad{
+    margin-top: 15px;
+}
+.profile{
+    font-size: 20px;
+    padding-bottom: 13px;
+    }
+.regpad{
+        margin-bottom: -3px;
+    margin-top: 23px;
+    }
+.glyphicon-trash{
+    color: red;
+}
+.glyphicon-pencil{
+    color: rgb(138, 157, 53);
+}
+.flt-rgt{
+float: right;
+background-color: #afc83f;
+    margin-right: 50px;
+    }
+
+.indpic2 img {
+    height: 170px;
+    width: 100%;
+}
+.nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover {
+    color: white;
+    cursor: default;
+    background-color: #acc53c;
+    border: 1px solid #ddd;
+    border-bottom-color: transparent;
+}
+.tabstop{
+    margin-top: 20px;
+}
+.fapad{padding-right: 5px;}
+.grp-btn2 {
+    margin-top: 40px;
+    margin-left: 15px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+.detailname{
+border: 1px solid rgba(150, 149, 157, 0.33);
+    padding: 10px;
+    color: #0093ff;
+    border-radius: 6px;
+    font-size: 16px;
+    }
+
+.detailtoppadding{
+    padding-top: 25px;
+    }
+.text-size-details{
+    font-size: 16px;
+    padding-top: 13px;
+}
+.picwid{
+    width: 18%;
+}
+.text-size-details1{
+  font-size: 16px;
+      margin-top: 1px;
+}
+
+.tooltip .tooltiptext::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #555 transparent transparent transparent;
+}
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+}
+.popover {
+    border-radius: 5px;
+    font-size: 14px;
+    font-family: 'Helvetica', sans-serif;
+    left: -95px;
+    padding: 7px 10px;
+    position: absolute;
+    width: 200px;
+    z-index: 4;
+  }
+  .text-size-details3{
+  font-size: 15px;
+  }
+
+.active{
+opacity:1;
+display:Block;
+
+}
+
+  .modal {
+    padding-top: 300px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+    position: relative;
+    background-color: #fefefe;
+    margin: auto;
+    padding: 0;
+    border: 0;
+    width: 80%;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    -webkit-animation-name: animatetop;
+    -webkit-animation-duration: 0.4s;
+    animation-name: animatetop;
+    animation-duration: 0.4s
+}
+
+/* Add Animation */
+@-webkit-keyframes animatetop {
+    from {top:-300px; opacity:0}
+    to {top:0; opacity:1}
+}
+
+@keyframes animatetop {
+    from {top:-300px; opacity:0}
+    to {top:0; opacity:1}
+}
+
+/* The Close Button */
+.close {
+    color: white;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-header {
+
+    background-color: #acc53c;
+    color: white;
+}
+
+
+
+.modal-footer {
+
+    background-color: #acc53c;
+    color: white;
+}
+.inq-delbtn{
+background-color: white;
+    color: black;
+    border: 0px;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: 185px;
+    margin-top: 0px;
+    }
+    .updnone{
+        background-color: transparent;
+    border: 0;
+    }
