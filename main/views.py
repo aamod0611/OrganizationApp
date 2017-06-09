@@ -33,7 +33,7 @@ class DetailView(generic.DetailView):
 class TeamMemberCreate(CreateView):
     model = TeamMembers
     template_name = 'TeamMember_form.html'
-    fields = ['Name', 'DOB','Email','Date_of_joining_CCI','Year_of_passing','Date_of_joining_Team','Phone_No','Technologies','Address','Qualification','Team','Skype_Id','Pic','Designation','Description','Billablestatus','Employeestatus']
+    fields = ['Name', 'DOB','Email','Date_of_joining_CCI','Year_of_passing','Date_of_joining_Team','Phone_No','Technologies','Address','Qualification','Team','Skype_Id','Pic','Designation','Description','Employeestatus','Billablestatus']
 
     # def TeamMemberEmail(request):
     #     if request.method == "POST":
