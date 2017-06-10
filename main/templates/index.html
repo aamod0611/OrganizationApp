@@ -20,8 +20,21 @@
 
 </div>
 
+<div class="container-fluid tabstop">
+  <ul class="nav nav-tabs">
+    <li class="active"><a data-toggle="tab" href="#home">Allocated to Teams</a></li>
+    <li><a data-toggle="tab" href="#menu1">Bench</a></li>
+  </ul>
+	<div class="tab-content">
+     <div id="home" class="tab-pane fade in active">
 
-
+	<div class="container-fluid tabstop">
+  <ul class="nav nav-tabs">
+    <li class="active"><a data-toggle="tab" href="#home1">Billable</a></li>
+    <li><a data-toggle="tab" href="#menu2">Non-Billable</a></li>
+  </ul>
+	<div class="tab-content">
+     <div id="home1" class="tab-pane fade in active">
 
 {% if all_album %}
 	<ul>
@@ -84,8 +97,68 @@
 {% else %}
 	<h3>you don't have any Team Members</h3>
 {% endif %}
+	 </div>
+		<div id="menu2" class="tab-pane fade">
+
+	{% if nonbillable %}
+	<ul>
+		{% for AllTeams in nonbillable %}
+	<div class="col-sm-2 indpic indpic1">
+		<div class="space">
+			<div class="thumbnail">
+				<img src="{{AllTeams.Pic.url}}">
+				<div class="namecent">
+             	 <a href="{% url 'main:details' AllTeams.id %}">{{AllTeams.Name}}</a>
+				</div>
+			</div>
+    	</div>
+	</div>
+ {% endfor %}
+		</ul>
+		{% else %}
+
+{% endif %}
+
+		</div>
+
+	</div>
+		 </div>
+	 </div>
 
 
+	<div id="menu1" class="tab-pane fade">
+{% if bench %}
+	<ul>
+{% for AllTeams in bench %}
+<div class="col-sm-2 indpic indpic1">
+	<div class="space">
+		<div class="thumbnail">
+			<img src="{{AllTeams.Pic.url}}">
+			<div class="namecent">
+              <a href="{% url 'main:details' AllTeams.id %}">{{AllTeams.Name}}</a>
+			</div>
+		</div>
+    </div>
+</div>
+ {% endfor %}
+		</ul>
+		{% else %}
+
+{% endif %}
+	</div>
+
+
+
+
+
+
+
+
+
+</div>
+
+	</div>
+</div>
 
 
 		<script type="text/javascript">

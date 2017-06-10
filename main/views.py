@@ -21,7 +21,13 @@ class IndexView(generic.ListView):
     context_object_name = 'all_album'
 
     def get_queryset(self):
-        return TeamMembers.objects.all()
+        return TeamMembers.objects.filter(Employeestatus_id = 1,Billablestatus_id = 1)
+
+    def get_context_data(self, **kwargs):
+        context = super(IndexView, self).get_context_data(**kwargs)
+        context['bench'] = TeamMembers.objects.filter(Employeestatus_id = 2 )
+        context['nonbillable'] = TeamMembers.objects.filter(Employeestatus_id=1, Billablestatus_id=2)
+        return context
 
 @method_decorator(login_required, name='dispatch')
 class DetailView(generic.DetailView):
@@ -30,33 +36,11 @@ class DetailView(generic.DetailView):
     template_name = 'details.html'
 
 
+
 class TeamMemberCreate(CreateView):
     model = TeamMembers
     template_name = 'TeamMember_form.html'
     fields = ['Name', 'DOB','Email','Date_of_joining_CCI','Year_of_passing','Date_of_joining_Team','Phone_No','Technologies','Address','Qualification','Team','Skype_Id','Pic','Designation','Description','Employeestatus','Billablestatus']
-
-    # def TeamMemberEmail(request):
-    #     if request.method == "POST":
-    #
-    #         form = TeamMemberEmail(request.POST)
-    #
-    #         if (form.is_valid()):
-    #             try:
-    #                 print(request.POST['title'])
-    #                 return redirect('/')
-    #             except:
-    #                 pass
-    #     else:
-    #         form = SuggestionForm()
-    #
-    #     return render_to_response('contact/suggestion.html',
-    #                               {'form': form},
-    #                               context_instance=RequestContext(request))
-
-
-
-
-
 
 
 class TeamMemberUpdate(UpdateView):
