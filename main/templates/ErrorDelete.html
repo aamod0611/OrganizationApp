@@ -1,10 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
+<html>
 <body>
-<h2>cannot delete</h2>
+<form>
+     <input name='search_box'>
+</form>
+{% if results %}
+Found the following items:
+<ol>
+{% for result in results %}
+    <li>{{result}}</li>
+{% endfor %}
+</ol>
+{% endif %}
 </body>
 </html>

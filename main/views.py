@@ -3,7 +3,7 @@ from django.views.generic.edit import CreateView, DeleteView,UpdateView
 from django.core.urlresolvers import reverse_lazy
 from . models import TeamMembers, Teams, CciGroups
 from django.db.models.deletion import ProtectedError
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect,render_to_response
 from django.http import Http404
 from django.views.generic import View
 from . forms import UserForm
@@ -118,6 +118,16 @@ class TeamsDelete(DeleteView):
     #         return obj
     #     else:
     #         raise Http404("cannot delete")
+
+
+def search(req):
+    if req.GET:
+        search_term = req.GET['search_box']
+        results = TeamMembers.objects.filter(Name__istartswith=search_term)
+        return render_to_response('ErrorDelete.html', {'results': results})
+    return render_to_response('ErrorDelete.html', {})
+
+
 
 
 class GroupCreate(CreateView):
