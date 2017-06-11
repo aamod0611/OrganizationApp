@@ -119,13 +119,14 @@ class TeamsDelete(DeleteView):
     #     else:
     #         raise Http404("cannot delete")
 
-
+@login_required
 def search(req):
     if req.GET:
         search_term = req.GET['search_box']
         results = TeamMembers.objects.filter(Name__istartswith=search_term)
-        return render_to_response('ErrorDelete.html', {'results': results})
-    return render_to_response('ErrorDelete.html', {})
+        #return render_to_response('ErrorDelete.html', {'results': results})
+        return render(req,'ErrorDelete.html', {'results': results})
+    return render('ErrorDelete.html', {})
 
 
 

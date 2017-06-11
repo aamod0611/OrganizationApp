@@ -1,5 +1,23 @@
-<html>
-<body>
+{% extends 'base.html' %}
+
+{% block body %}
+ <div class="Team-Details-info">
+		<div class="container-fluid">
+			<div class="username">
+				<div class="col-sm-10">
+                  <h2>Search</h2>
+	        	</div>
+	 <div class="col-sm-2 usetop-pad">
+					{% if user.is_authenticated %}
+        				<p class="usepadding">Welcome: {{ user.username }}     </p>
+    				{% endif %}
+				</div>
+			</div>
+    </div>
+ </div>
+{% if user.is_authenticated %}
+<div class="Container searchboxpad">
+	<div class="row">
 <form>
      <input name='search_box'>
 </form>
@@ -7,9 +25,14 @@
 Found the following items:
 <ol>
 {% for result in results %}
-    <li>{{result}}</li>
+    <li>
+        <a href="{% url 'main:details' result.id %}">{{result}}</a>
+    </li>
 {% endfor %}
 </ol>
 {% endif %}
-</body>
-</html>
+{% else %}
+{% endif %}
+{% endblock %}
+    </div>
+</div>
