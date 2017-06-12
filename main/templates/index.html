@@ -15,10 +15,10 @@
         				<p class="usepadding">Welcome: {{ user.username }}     </p>
     				{% endif %}
 				</div>
-				<div class="col-sm-2 usetop-pad">
+				<div class="col-sm-2 usetop-padsearch ">
 					<form type="get" action="{% url 'main:search' %}" style="margin: 0">
-    					<input  id="search_box" type="text" name="search_box"  placeholder="Search..." >
-    					<button id="search_submit" type="submit" ><i class="fa fa-search" aria-hidden="true"></i></button>
+    					<input autocomplete="off"  id="search_box" type="text" name="search_box"  placeholder="Search..." >
+    					<!--<button id="search_submit" type="submit" ><i class="fa fa-search" aria-hidden="true"></i></button>-->
 					</form>
 				</div>
 		</div>
@@ -33,107 +33,161 @@
     <li><a data-toggle="tab" href="#menu1">Bench</a></li>
   </ul>
 	<div class="tab-content">
+
      <div id="home" class="tab-pane fade in active">
+		<div class="container-fluid tabstop">
+		  	<ul class="nav nav-tabs">
+			<li class="active"><a data-toggle="tab" href="#home1">Billable</a></li>
+			<li><a data-toggle="tab" href="#menu2">Non-Billable</a></li>
+		  </ul>
+			<div class="tab-content">
+			 <div id="home1" class="tab-pane fade in active">
+			<div class="panel panel-default">
+				<div class="panel-body">
+					{% if all_album %}
+					<ul>
+				{% for TeamMembers in all_album %}
+				<!-- details -->
+					<!-- <li><a href="/music/{{album.id}}">{{album.title}}</a></li> -->
+						<div class="col-sm-2 indpic indpic1">
+							<div class="space">
+							<div class="thumbnail"data-toggle="popover" title="Information" data-content="{{TeamMembers.Description}}">
+					<img src="{{TeamMembers.Pic.url}}">
+								<div class="namecent">
+					 <a href="{% url 'main:details' TeamMembers.id %}">{{TeamMembers.Name}}</a>
+									</div>
+								{% if request.user.is_superuser %}
+				<div class="del-upd">
+					<form class="indform" action="{% url 'main:TeamMember-delete' TeamMembers.id  %}" method="post" enctype="multipart/form-data">
+						{% csrf_token %}
+						<a class="teamMember-del" href = "javaScript:void(0);" data-toggle="modal" data-target="#myModal">
+							<span class="glyphicon glyphicon-trash"></span>
+						</a>
+						<!-- Modal -->
+			<div id="myModal" class="modal fade" role="dialog">
+			  <div class="modal-dialog">
+				<!-- Modal content-->
+				<div class="modal-content">
+				  <div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title">TeamMembers</h4>
+				  </div>
+				  <div class="modal-body">
+					<p>Are you sure you want to delete this?</p>
+				  </div>
+				  <div class="modal-footer">
+						<button class="teamMember-del inq-delbtn">
+							Delete
+						</button>
+				  </div>
+				</div>
 
-	<div class="container-fluid tabstop">
-  <ul class="nav nav-tabs">
-    <li class="active"><a data-toggle="tab" href="#home1">Billable</a></li>
-    <li><a data-toggle="tab" href="#menu2">Non-Billable</a></li>
-  </ul>
-	<div class="tab-content">
-     <div id="home1" class="tab-pane fade in active">
-
-{% if all_album %}
-	<ul>
-		{% for TeamMembers in all_album %}
-		<!-- details -->
-			<!-- <li><a href="/music/{{album.id}}">{{album.title}}</a></li> -->
-			<div class="col-sm-2 indpic indpic1">
-				<div class="space">
-				<div class="thumbnail"data-toggle="popover" title="Information" data-content="{{TeamMembers.Description}}">
-		<img src="{{TeamMembers.Pic.url}}">
-					<div class="namecent">
-		 <a href="{% url 'main:details' TeamMembers.id %}">{{TeamMembers.Name}}</a>
-						</div>
-					{% if request.user.is_superuser %}
-	<div class="del-upd">
-		<form class="indform" action="{% url 'main:TeamMember-delete' TeamMembers.id  %}" method="post" enctype="multipart/form-data">
-			{% csrf_token %}
-			<a class="teamMember-del" href = "javaScript:void(0);" data-toggle="modal" data-target="#myModal">
-				<span class="glyphicon glyphicon-trash"></span>
-			</a>
-			<!-- Modal -->
-<div id="myModal" class="modal fade" role="dialog">
-  <div class="modal-dialog">
-    <!-- Modal content-->
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">TeamMembers</h4>
-      </div>
-      <div class="modal-body">
-        <p>Are you sure you want to delete this?</p>
-      </div>
-      <div class="modal-footer">
-       		<button class="teamMember-del inq-delbtn">
-				Delete
-			</button>
-      </div>
-    </div>
-
-  </div>
-</div>
-         </form>
-
-		<form class="indform" action="{% url 'main:TeamMember-update' TeamMembers.id  %}" method="get" enctype="multipart/form-data">
-			{% csrf_token %}
-			<button class="teamMember-upd updnone" type="submit">
-				<span class="glyphicon glyphicon-pencil"></span>
-			</button>
-         </form>
-	</div>
-
-{% else %}
-
-{% endif %}
-        </div>
-		 </div>
+			  </div>
 			</div>
-	{% endfor %}
-	</ul>
-{% else %}
-	<h3>you don't have any Team Members</h3>
-{% endif %}
-	 </div>
-		<div id="menu2" class="tab-pane fade">
+					 </form>
 
-	{% if nonbillable %}
-	<ul>
-		{% for AllTeams in nonbillable %}
-	<div class="col-sm-2 indpic indpic1">
-		<div class="space">
-			<div class="thumbnail">
-				<img src="{{AllTeams.Pic.url}}">
-				<div class="namecent">
-             	 <a href="{% url 'main:details' AllTeams.id %}">{{AllTeams.Name}}</a>
+					<form class="indform" action="{% url 'main:TeamMember-update' TeamMembers.id  %}" method="get" enctype="multipart/form-data">
+						{% csrf_token %}
+						<button class="teamMember-upd updnone" type="submit">
+							<span class="glyphicon glyphicon-pencil"></span>
+						</button>
+					 </form>
+				</div>
+
+
+			{% else %}
+
+			{% endif %}
+					</div>
+					 </div>
+						</div>
+				{% endfor %}
+					</ul>
+				</div>
+				<div class="panel-footer">
+					{% if is_paginated %}
+						<ul class="pagination">
+			{% if page_obj.has_previous %}
+			  <li><a href="?page={{ page_obj.previous_page_number }}">&laquo;</a></li>
+			{% else %}
+			  <li class="disabled"><span>&laquo;</span></li>
+			{% endif %}
+			{% for i in paginator.page_range %}
+			  {% if page_obj.number == i %}
+				<li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+			  {% else %}
+				<li><a href="?page={{ i }}">{{ i }}</a></li>
+			  {% endif %}
+			{% endfor %}
+			{% if page_obj.has_next %}
+			  <li><a href="?page={{ page_obj.next_page_number }}">&raquo;</a></li>
+			{% else %}
+			  <li class="disabled"><span>&raquo;</span></li>
+			{% endif %}
+		  </ul>
+					{% endif %}
 				</div>
 			</div>
-    	</div>
-	</div>
- {% endfor %}
-		</ul>
 		{% else %}
+			<h3>you don't have any Team Members</h3>
+		{% endif %}
+			 </div>
 
-{% endif %}
-
+				<div id="menu2" class="tab-pane fade">
+				<div class="panel panel-default">
+				<div class="panel-body">
+				{% if nonbillable %}
+					<ul>
+					{% for AllTeams in nonbillable %}
+				<div class="col-sm-2 indpic indpic1">
+					<div class="space">
+						<div class="thumbnail">
+							<img src="{{AllTeams.Pic.url}}">
+							<div class="namecent">
+							 <a href="{% url 'main:details' AllTeams.id %}">{{AllTeams.Name}}</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			 {% endfor %}
+					</ul>
+				</div>
+				<div class="panel-footer">
+				{% if is_paginated %}
+		  <ul class="pagination">
+			{% if page_obj.has_previous %}
+			  <li><a href="?page={{ page_obj.previous_page_number }}">&laquo;</a></li>
+			{% else %}
+			  <li class="disabled"><span>&laquo;</span></li>
+			{% endif %}
+			{% for i in paginator.page_range %}
+			  {% if page_obj.number == i %}
+				<li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+			  {% else %}
+				<li><a href="?page={{ i }}">{{ i }}</a></li>
+			  {% endif %}
+			{% endfor %}
+			{% if page_obj.has_next %}
+			  <li><a href="?page={{ page_obj.next_page_number }}">&raquo;</a></li>
+			{% else %}
+			  <li class="disabled"><span>&raquo;</span></li>
+			{% endif %}
+		  </ul>
+		{% endif %}
+			</div>
 		</div>
+				{% else %}
+		{% endif %}
 
+				</div>
+
+			</div>
 	</div>
-		 </div>
 	 </div>
 
-
 	<div id="menu1" class="tab-pane fade">
+		<div class="panel panel-default">
+			<div class="panel-body">
 {% if bench %}
 	<ul>
 {% for AllTeams in bench %}
@@ -149,18 +203,35 @@
 </div>
  {% endfor %}
 		</ul>
+			</div>
+<div class="panel-footer">
+		{% if is_paginated %}
+  <ul class="pagination">
+    {% if page_obj.has_previous %}
+      <li><a href="?page={{ page_obj.previous_page_number }}">&laquo;</a></li>
+    {% else %}
+      <li class="disabled"><span>&laquo;</span></li>
+    {% endif %}
+    {% for i in paginator.page_range %}
+      {% if page_obj.number == i %}
+        <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+      {% else %}
+        <li><a href="?page={{ i }}">{{ i }}</a></li>
+      {% endif %}
+    {% endfor %}
+    {% if page_obj.has_next %}
+      <li><a href="?page={{ page_obj.next_page_number }}">&raquo;</a></li>
+    {% else %}
+      <li class="disabled"><span>&raquo;</span></li>
+    {% endif %}
+  </ul>
+{% endif %}
+	</div>
+		</div>
 		{% else %}
 
 {% endif %}
 	</div>
-
-
-
-
-
-
-
-
 
 </div>
 

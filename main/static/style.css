@@ -178,6 +178,7 @@ font-weight: 600;
     }
 
 .usepadding{
+text-align: right;
     font-weight: 600;
 }
 .usetop-pad{
@@ -339,8 +340,6 @@ display:Block;
     color: white;
 }
 
-
-
 .modal-footer {
 
     background-color: #acc53c;
@@ -362,4 +361,21 @@ background-color: white;
 
 .searchboxpad{
 margin-top: 40px;
+}
+
+#search_box {
+    width: 100%;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    font-size: 16px;
+    background-color: white;
+    background-image: url('Images/searchicon.png');
+    background-position: 10px 10px;
+    background-repeat: no-repeat;
+    padding: 8px 20px 8px 40px;
+
+}
+.usetop-padsearch {
+    margin-top: 5px;
 }
