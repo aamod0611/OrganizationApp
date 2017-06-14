@@ -54,28 +54,58 @@
              </div>
 		</div>
     </div>
+
+<div class="panel panel-default">
+    <div class="panel-body">
 {% if All_TeamMembers %}
 	<ul>
 		{% for AllTeams in All_TeamMembers %}
+<div class="col-sm-2 indpic indpic1">
+	<div class="space">
+		<div class="thumbnail">
+			<img src="{{AllTeams.Pic.url}}">
+				<div class="namecent">
 
-      <div class="space">
-          <div class="col-sm-12">
-		<div class="profile">
-             <li>
         <a href="{% url 'main:TeamMemberDetails' AllTeams.id %}">{{AllTeams.Name}}</a>
- </li>
-         </div>
+                </div>
         </div>
-
+    </div>
 </div>
 
 	{% endfor %}
 	</ul>
+   </div>
+<div class="panel-footer">
+
+	<ul class="pagination">
+			{% if All_TeamMembers.has_previous %}
+			  <li><a href="?page={{ All_TeamMembers.previous_page_number }}">&laquo;</a></li>
+			{% else %}
+			  <li class="disabled"><span>&laquo;</span></li>
+			{% endif %}
+			{% for i in All_TeamMembers.paginator.page_range %}
+			  {% if All_TeamMembers.number == i %}
+				<li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+			  {% else %}
+				<li><a href="?page={{ i }}">{{ i }}</a></li>
+			  {% endif %}
+			{% endfor %}
+			{% if All_TeamMembers.has_next %}
+			  <li><a href="?page={{ All_TeamMembers.next_page_number }}">&raquo;</a></li>
+			{% else %}
+			  <li class="disabled"><span>&raquo;</span></li>
+			{% endif %}
+	</ul>
+
+
+
+
 {% else %}
 	<h3>you don't have any Team Members</h3>
 {% endif %}
+</div>
 
+</div>
 
-  </div>
 {% endblock %}
 

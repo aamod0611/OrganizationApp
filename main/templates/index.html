@@ -133,13 +133,13 @@
 		{% endif %}
 			 </div>
 
-				<div id="menu2" class="tab-pane fade">
-				<div class="panel panel-default">
-				<div class="panel-body">
-				{% if nonbillable %}
-					<ul>
+ <div id="menu2" class="tab-pane fade">
+	<div class="panel panel-default">
+		<div class="panel-body">
+			{% if nonbillable %}
+				<ul>
 					{% for AllTeams in nonbillable %}
-				<div class="col-sm-2 indpic indpic1">
+				      <div class="col-sm-2 indpic indpic1">
 					<div class="space">
 						<div class="thumbnail">
 							<img src="{{AllTeams.Pic.url}}">
@@ -149,37 +149,38 @@
 						</div>
 					</div>
 				</div>
-			 {% endfor %}
-					</ul>
-				</div>
-				<div class="panel-footer">
-				{% if is_paginated %}
-		  <ul class="pagination">
-			{% if page_obj.has_previous %}
-			  <li><a href="?page={{ page_obj.previous_page_number }}">&laquo;</a></li>
+			        {% endfor %}
+				</ul>
+		</div>
+		<div class="panel-footer">
+
+			<ul class="pagination">
+			{% if nonbillable.has_previous %}
+			  <li><a href="?page={{ nonbillable.previous_page_number }}">&laquo;</a></li>
 			{% else %}
 			  <li class="disabled"><span>&laquo;</span></li>
 			{% endif %}
-			{% for i in paginator.page_range %}
-			  {% if page_obj.number == i %}
+			{% for i in nonbillable.paginator.page_range %}
+			  {% if nonbillable.number == i %}
 				<li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
 			  {% else %}
 				<li><a href="?page={{ i }}">{{ i }}</a></li>
 			  {% endif %}
 			{% endfor %}
-			{% if page_obj.has_next %}
-			  <li><a href="?page={{ page_obj.next_page_number }}">&raquo;</a></li>
+			{% if nonbillable.has_next %}
+			  <li><a href="?page={{ nonbillable.next_page_number }}">&raquo;</a></li>
 			{% else %}
 			  <li class="disabled"><span>&raquo;</span></li>
 			{% endif %}
-		  </ul>
-		{% endif %}
-			</div>
+	</ul>
+
+
 		</div>
+    </div>
 				{% else %}
 		{% endif %}
 
-				</div>
+ </div>
 
 			</div>
 	</div>
@@ -205,27 +206,25 @@
 		</ul>
 			</div>
 <div class="panel-footer">
-		{% if is_paginated %}
-  <ul class="pagination">
-    {% if page_obj.has_previous %}
-      <li><a href="?page={{ page_obj.previous_page_number }}">&laquo;</a></li>
-    {% else %}
-      <li class="disabled"><span>&laquo;</span></li>
-    {% endif %}
-    {% for i in paginator.page_range %}
-      {% if page_obj.number == i %}
-        <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
-      {% else %}
-        <li><a href="?page={{ i }}">{{ i }}</a></li>
-      {% endif %}
-    {% endfor %}
-    {% if page_obj.has_next %}
-      <li><a href="?page={{ page_obj.next_page_number }}">&raquo;</a></li>
-    {% else %}
-      <li class="disabled"><span>&raquo;</span></li>
-    {% endif %}
-  </ul>
-{% endif %}
+		<ul class="pagination">
+			{% if bench.has_previous %}
+			  <li><a href="?page={{ bench.previous_page_number }}">&laquo;</a></li>
+			{% else %}
+			  <li class="disabled"><span>&laquo;</span></li>
+			{% endif %}
+			{% for i in bench.paginator.page_range %}
+			  {% if bench.number == i %}
+				<li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+			  {% else %}
+				<li><a href="?page={{ i }}">{{ i }}</a></li>
+			  {% endif %}
+			{% endfor %}
+			{% if bench.has_next %}
+			  <li><a href="?page={{ bench.next_page_number }}">&raquo;</a></li>
+			{% else %}
+			  <li class="disabled"><span>&raquo;</span></li>
+			{% endif %}
+	</ul>
 	</div>
 		</div>
 		{% else %}

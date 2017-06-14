@@ -13,21 +13,49 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib.auth.decorators import user_passes_test
 from django.http import HttpResponse, HttpResponseRedirect
+from django.core.paginator import Paginator
+from django.core.paginator import EmptyPage
+from django.core.paginator import PageNotAnInteger
+
 from cci import settings
 
 @method_decorator(login_required, name='dispatch')
 class IndexView(generic.ListView):
     template_name = 'index.html'
-    context_object_name = 'all_album'
     paginate_by = 5
+    context_object_name = 'all_album'
 
     def get_queryset(self):
         return TeamMembers.objects.filter(Employeestatus_id = 1,Billablestatus_id = 1)
 
     def get_context_data(self, **kwargs):
         context = super(IndexView, self).get_context_data(**kwargs)
-        context['bench'] = TeamMembers.objects.filter(Employeestatus_id = 2 )
-        context['nonbillable'] = TeamMembers.objects.filter(Employeestatus_id=1, Billablestatus_id=2)
+        bench = TeamMembers.objects.filter(Employeestatus_id = 2 )
+        paginator = Paginator(bench, self.paginate_by)
+        page = self.request.GET.get('page')
+
+        try:
+            all_teamMembers = paginator.page(page)
+        except PageNotAnInteger:
+            all_teamMembers = paginator.page(1)
+        except EmptyPage:
+            all_teamMembers = paginator.page(paginator.num_pages)
+        context['bench'] = all_teamMembers
+
+
+
+        nonbillable = TeamMembers.objects.filter(Employeestatus_id=1, Billablestatus_id=2)
+        paginator = Paginator(nonbillable, self.paginate_by)
+        page = self.request.GET.get('page')
+
+        try:
+            all_teamMembers = paginator.page(page)
+        except PageNotAnInteger:
+            all_teamMembers = paginator.page(1)
+        except EmptyPage:
+            all_teamMembers = paginator.page(paginator.num_pages)
+
+        context['nonbillable'] = all_teamMembers
         return context
 
 @method_decorator(login_required, name='dispatch')
@@ -72,10 +100,23 @@ class TeamDetailView(generic.DetailView):
     model = Teams
     context_object_name = 'TeamsDetail'
     template_name = 'TeamDetails.html'
+    paginate_by = 3
+
 
     def get_context_data(self, **kwargs):
         context = super(TeamDetailView, self).get_context_data(**kwargs)
-        context['All_TeamMembers'] = TeamMembers.objects.filter(Team_id=self.kwargs['pk'])
+        All_TeamMembers = TeamMembers.objects.filter(Team_id=self.kwargs['pk'])
+        paginator = Paginator(All_TeamMembers, self.paginate_by)
+        page = self.request.GET.get('page')
+
+        try:
+            all_teamMembers = paginator.page(page)
+        except PageNotAnInteger:
+            all_teamMembers = paginator.page(1)
+        except EmptyPage:
+            all_teamMembers = paginator.page(paginator.num_pages)
+
+        context['All_TeamMembers'] = all_teamMembers
         return context
 
 @method_decorator(login_required, name='dispatch')
