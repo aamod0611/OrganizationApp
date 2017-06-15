@@ -14,7 +14,7 @@ from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib.auth.decorators import user_passes_test
 from django.http import HttpResponse, HttpResponseRedirect
 from django.core.paginator import Paginator
-from django.core.paginator import EmptyPage
+from django.core.paginator import EmptyPage,InvalidPage
 from django.core.paginator import PageNotAnInteger
 
 from cci import settings
@@ -100,7 +100,7 @@ class TeamDetailView(generic.DetailView):
     model = Teams
     context_object_name = 'TeamsDetail'
     template_name = 'TeamDetails.html'
-    paginate_by = 3
+    paginate_by = 1
 
 
     def get_context_data(self, **kwargs):
@@ -118,6 +118,8 @@ class TeamDetailView(generic.DetailView):
 
         context['All_TeamMembers'] = all_teamMembers
         return context
+
+
 
 @method_decorator(login_required, name='dispatch')
 class TeamMemberDetailView(generic.DetailView):

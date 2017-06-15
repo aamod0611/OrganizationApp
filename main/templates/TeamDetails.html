@@ -77,26 +77,37 @@
    </div>
 <div class="panel-footer">
 
-	<ul class="pagination">
-			{% if All_TeamMembers.has_previous %}
-			  <li><a href="?page={{ All_TeamMembers.previous_page_number }}">&laquo;</a></li>
-			{% else %}
-			  <li class="disabled"><span>&laquo;</span></li>
-			{% endif %}
-			{% for i in All_TeamMembers.paginator.page_range %}
-			  {% if All_TeamMembers.number == i %}
-				<li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
-			  {% else %}
-				<li><a href="?page={{ i }}">{{ i }}</a></li>
-			  {% endif %}
-			{% endfor %}
-			{% if All_TeamMembers.has_next %}
-			  <li><a href="?page={{ All_TeamMembers.next_page_number }}">&raquo;</a></li>
-			{% else %}
-			  <li class="disabled"><span>&raquo;</span></li>
-			{% endif %}
-	</ul>
 
+
+<div class="text-center">
+        <ul class="pagination pagination-sm">
+            {% if All_TeamMembers.number >= 5 %}
+               <li><a href="?page=1">1</a></li>
+               <li><span>...</span></li>
+            {% elif All_TeamMembers.number == 4 %}
+               <li><a href="?page=1">1</a></li>
+            {% endif %}
+            {% if All_TeamMembers.number|add:"-2" >= 1  %}
+               <li><a href="?page={{ All_TeamMembers.number|add:' -2 ' }}">{{ All_TeamMembers.number|add:"-2" }}</a></li>
+            {% endif %}
+            {% if All_TeamMembers.number|add:"-1" >= 1  %}
+               <li><a href="?page={{ All_TeamMembers.number|add:'-1' }}">{{ All_TeamMembers.number|add:"-1" }}</a></li>
+            {% endif %}
+               <li class="active"><a href="?page={{ All_TeamMembers.number }}">{{ All_TeamMembers.number }}</a></li>
+            {% if All_TeamMembers.number|add:"1" <= All_TeamMembers.paginator.num_pages  %}
+               <li><a href="?page={{ All_TeamMembers.number|add:'1' }}">{{ All_TeamMembers.number|add:"1" }}</a></li>
+            {% endif %}
+            {% if All_TeamMembers.number|add:"2" <= All_TeamMembers.paginator.num_pages %}
+               <li><a href="?page={{ All_TeamMembers.number|add:'2' }}">{{ All_TeamMembers.number|add:"2" }}</a></li>
+            {% endif %}
+            {% if All_TeamMembers.number|add:"2" <= All_TeamMembers.paginator.num_pages|add:"-2" %}
+               <li><span>...</span></li>
+            <li><a href="?page={{ All_TeamMembers.paginator.num_pages }}">{{ All_TeamMembers.paginator.num_pages }}</a></li>
+            {% elif All_TeamMembers.number|add:"1" <= All_TeamMembers.paginator.num_pages|add:"-2" %}
+            <li><a href="?page={{ All_TeamMembers.paginator.num_pages }}">{{ All_TeamMembers.paginator.num_pages }}</a></li>
+            {% endif %}
+        </ul>
+</div>
 
 
 
