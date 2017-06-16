@@ -16,6 +16,9 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.core.paginator import Paginator
 from django.core.paginator import EmptyPage,InvalidPage
 from django.core.paginator import PageNotAnInteger
+from django.contrib.auth import update_session_auth_hash
+from django.contrib.auth.forms import PasswordChangeForm
+from django.contrib import messages
 
 from cci import settings
 
@@ -63,6 +66,37 @@ class DetailView(generic.DetailView):
     model = TeamMembers
     context_object_name = 'TeamMembers'
     template_name = 'details.html'
+
+
+
+
+def change_password(request):
+    if request.method == 'POST':
+        form = PasswordChangeForm(request.user, request.POST)
+        if form.is_valid():
+            user = form.save()
+            update_session_auth_hash(request, user)  # Important!
+            messages.success(request, 'Your password was successfully updated!')
+            return redirect('main:index')
+        else:
+            messages.error(request, 'Please correct the error below.')
+    else:
+        form = PasswordChangeForm(request.user)
+    return render(request, 'password_change.html', {
+        'form': form
+    })
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

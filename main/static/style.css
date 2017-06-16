@@ -387,3 +387,6 @@ margin-top: 40px;
     background-color: #acc53c;
     border-color: #acc53c;
 }
+.helptext{
+    display: none;
+    }

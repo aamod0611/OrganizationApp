@@ -82,12 +82,15 @@ WSGI_APPLICATION = 'cci.wsgi.application'
 
 DATABASES = {
     'default': {
-            'ENGINE': 'django.db.backends.mysql',
+            'ENGINE': 'sql_server.pyodbc',
             'NAME': 'cci',
-            'USER': 'root',
+            'USER': 'sa',
             'PASSWORD': 'sa123456#',
-            'HOST': '',
+            'HOST': 'CCI-LPT-85\MSSQLSERVER2K14E',
             'PORT': '',
+'OPTIONS': {
+'host_is_server': True
+},
         }
     }
 

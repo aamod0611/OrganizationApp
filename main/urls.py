@@ -11,7 +11,7 @@ urlpatterns = [
         #url(r'^$', views.IndexView.as_view(), name='index'),
 
         url(r'^main/registraion/$', views.UserFormView.as_view(), name='registration'),
-
+        url(r'^password/$', views.change_password, name='change_password'),
         url(r'^main/index/search/?$', login_required(views.search), name='search'),
         url(r'^main/index/$', login_required(views.IndexView.as_view()), name='index'),
 
