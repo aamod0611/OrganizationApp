@@ -17,11 +17,20 @@ from django.conf.urls import include, url
 from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
+from django.contrib.auth.views import login, password_reset, password_reset_done,password_reset_confirm,password_reset_complete
 
 urlpatterns = [
     url(r'', include('main.urls')),
     url(r'^main/', include('main.urls')),
     url(r'^admin/', admin.site.urls),
+
+    url(r'^main/password-reset/$', password_reset, name='password_reset'),
+    url(r'^password-reset/done/$', password_reset_done, name='password_reset_done'),
+    url(r'^password-reset/confirm/(?P<uidb64>[-\w]+)/(?P<token>[-\w]+)/$',
+        password_reset_confirm, name='password_reset_confirm'),
+    url(r'^password-reset/complete/$', password_reset_complete,
+        name='password_reset_complete'),
+
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

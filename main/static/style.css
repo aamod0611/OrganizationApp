@@ -390,3 +390,7 @@ margin-top: 40px;
 .helptext{
     display: none;
     }
+.navbar-inverse .navbar-nav>.open>a, .navbar-inverse .navbar-nav>.open>a:focus, .navbar-inverse .navbar-nav>.open>a:hover {
+    color: #9EB929;
+    background-color: transparent;
+}
