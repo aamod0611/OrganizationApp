@@ -2,7 +2,7 @@ from django.conf.urls import url
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.decorators import permission_required
 from . import views
-from django.contrib.auth.views import login, password_reset, password_reset_done
+from django.contrib.auth.views import login, password_reset, password_reset_done,password_change_done
 from django.contrib.auth.decorators import user_passes_test
 from django.contrib.auth import views as auth_views
 
@@ -12,6 +12,9 @@ urlpatterns = [
         #url(r'^$', views.IndexView.as_view(), name='index'),
         url(r'^main/registraion/$', views.UserFormView.as_view(), name='registration'),
         url(r'^password/$', views.change_password, name='change_password'),
+
+        url(r'^password-change/done/$', password_change_done, name='password_change_done'),
+
         url(r'^main/index/search/?$', login_required(views.search), name='search'),
         url(r'^main/index/$', login_required(views.IndexView.as_view()), name='index'),
 
