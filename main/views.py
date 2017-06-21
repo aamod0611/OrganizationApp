@@ -87,29 +87,16 @@ def change_password(request):
     })
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 class TeamMemberCreate(CreateView):
     model = TeamMembers
     template_name = 'TeamMember_form.html'
-    fields = ['Name', 'DOB','Email','Date_of_joining_CCI','Year_of_passing','Date_of_joining_Team','Phone_No','Technologies','Address','Qualification','Team','Skype_Id','Pic','Designation','Description','Employeestatus','Billablestatus']
+    fields = ['Name', 'DOB','Email','Date_of_joining_CCI','Year_of_passing','Date_of_joining_Team','Phone_No','Technologies','Address','Qualification','Team','Skype_Id','Gmail','Pic','Designation','Description','Employeestatus','Billablestatus']
 
 
 class TeamMemberUpdate(UpdateView):
     model = TeamMembers
     template_name = 'TeamMember_form.html'
-    fields = ['Name', 'DOB', 'Designation', 'Pic', 'Team','Email','Skype_Id','Date_of_joining_CCI','Date_of_joining_Team','Phone_No','Year_of_passing','Address','Qualification','Technologies','Description','Billablestatus','Employeestatus']
+    fields = ['Name', 'DOB', 'Designation', 'Gmail','Pic', 'Team','Email','Skype_Id','Date_of_joining_CCI','Date_of_joining_Team','Phone_No','Year_of_passing','Address','Qualification','Technologies','Description','Billablestatus','Employeestatus']
 
 
 class TeamMemberDelete(DeleteView):
