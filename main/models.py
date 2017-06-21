@@ -58,16 +58,15 @@ class Billable_Status(models.Model):
 class TeamMembers(models.Model):
     Name = models.CharField(max_length=200)
     DOB =  models.DateField(max_length=8,default=None)
-    Designation = models.ForeignKey(Designations, blank=False, default=1,null=True)
+    Designation = models.ForeignKey(Designations,db_column='Designation', blank=False, default=1,null=True)
 
 # this extra is for romino's database
-    Desigtn = models.CharField(db_column='Designation',max_length=200,null=True)
+    #Desigtn = models.IntegerField(db_column='Designation',max_length=200,null=True)
     DateCreated = models.DateTimeField(auto_now_add=False, default=datetime.datetime.now(), editable=False)
     DateModified = models.DateTimeField(auto_now_add=False, default=datetime.datetime.now(), editable=False)
     Gmail = models.EmailField(max_length=50, db_column='GmailId', default=None)
     IsTeanLead = models.BooleanField(db_column='IsTeanLead',null=False,default=0)
-    MemStatus = models.IntegerField(max_length=200, default=0, null=True)
-    BillStatus = models.IntegerField(max_length=200, default=0, null=True)
+
 #######################
 
     Pic = models.FileField(db_column='Image',default='Images/default.png')
@@ -85,8 +84,8 @@ class TeamMembers(models.Model):
     Qualification = models.CharField(max_length=200,db_column='HighestQualification',default=None)
     Technologies = models.CharField(max_length=200,default=None)
     Description = models.CharField(max_length=200,db_column='BriefDescription',default=None)
-    Employeestatus = models.ForeignKey(Employee_Status, blank=False, default=1,null=True)
-    Billablestatus = models.ForeignKey(Billable_Status, blank=False, default=1,null=True)
+    Employeestatus = models.ForeignKey(Employee_Status,db_column='EmployeeStatus', blank=False, default=1,null=True)
+    Billablestatus = models.ForeignKey(Billable_Status,db_column='BillableStatus', blank=False, default=1,null=True)
 
 
 
