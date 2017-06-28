@@ -3,14 +3,39 @@
 {% block body %}
 <form class="form-horizontal" action="" method="post" enctype="multipart/form-data">
 	{% csrf_token %}
-	<div class="container">
-		<div class="row">
+
+
+ <div class="container-fluid tabstop">
+  <ul class="nav nav-tabs">
+    <li class="active"><a data-toggle="tab" href="#home">Personal Info</a></li>
+    <li><a data-toggle="tab" href="#menu1">Assets</a></li>
+  </ul>
+	<div class="tab-content">
+     <div id="home" class="tab-pane fade in active">
 			<div class="group-form-space">
+				<div><h4>PERSONAL INFO</h4></div>
 	{% include 'form_template.html' %}
 	<button class="grp-btn2" type="submit">submit</button>
 			</div>
-			</div>
 	</div>
+    <div id="menu1" class="tab-pane fade">
+			<div class="container-fluid tabstop">
+	 <ul class="nav nav-tabs">
+      <li class="active"><a data-toggle="tab" href="#personal">Personal</a></li>
+      <li><a data-toggle="tab" href="#company">Company</a></li>
+     </ul>
+	 <div class="tab-content">
+    	<div id="personal" class="tab-pane fade in active">
+		  <h3>Personal Assets</h3>
+		</div>
+		  <div id="company" class="tab-pane fade">
+			    <h3>Company Assets</h3>
+		  </div>
+	 </div>
+    </div>
+		</div>
+ 	</div>
+ </div>
 </form>
 
 <script>

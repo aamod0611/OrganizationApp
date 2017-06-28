@@ -1,7 +1,7 @@
 from django.views import generic
 from django.views.generic.edit import CreateView, DeleteView,UpdateView
 from django.core.urlresolvers import reverse_lazy
-from . models import TeamMembers, Teams, CciGroups
+from . models import TeamMembers, Teams, CciGroups,CompanyAssets,UserAssignedAccessories
 from django.db.models.deletion import ProtectedError
 from django.shortcuts import render,redirect,render_to_response
 from django.http import Http404
@@ -61,13 +61,21 @@ class IndexView(generic.ListView):
         context['nonbillable'] = all_teamMembers
         return context
 
+
+
+
+
 @method_decorator(login_required, name='dispatch')
 class DetailView(generic.DetailView):
     model = TeamMembers
     context_object_name = 'TeamMembers'
     template_name = 'details.html'
 
-
+    def get_context_data(self, **kwargs):
+        context = super(DetailView, self).get_context_data(**kwargs)
+        context['Assets'] = CompanyAssets.objects.filter(Name_id=self.kwargs['pk'])
+        context['Accessories'] = UserAssignedAccessories.objects.filter(Name_id=self.kwargs['pk'])
+        return context
 
 
 def change_password(request):

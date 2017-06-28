@@ -87,9 +87,6 @@ class TeamMembers(models.Model):
     Employeestatus = models.ForeignKey(Employee_Status,db_column='EmployeeStatus', blank=False, default=1,null=True)
     Billablestatus = models.ForeignKey(Billable_Status,db_column='BillableStatus', blank=False, default=1,null=True)
 
-
-
-
     def get_absolute_url(self):
         return reverse('main:details', kwargs={'pk': self.pk})
 
@@ -100,3 +97,60 @@ class TeamMembers(models.Model):
         db_table = "TeamMember"
 
 
+class Laptop(models.Model):
+    Device_Tag = models.CharField(max_length=20,default=None)
+    Sr_No = models.CharField(max_length=20,default=None)
+    Manufacturer = models.CharField(max_length=20,default=None)
+    Model = models.CharField(max_length=20,default=None)
+    Processor = models.CharField(max_length=20,default=None)
+    RAM = models.CharField(max_length=20,default=None)
+    OS = models.CharField(max_length=20,default=None)
+    Mem_Speed = models.CharField(max_length=20,default=None)
+    Purchased_Date = models.DateField(max_length=8,default=None)
+    Purchased_From = models.CharField(max_length=20,default=None)
+    Service_Date = models.DateField(max_length=8,default=None)
+
+    def __str__(self):
+        return self.Sr_No
+
+class KeyBoard(models.Model):
+    Device_Tag = models.CharField(max_length=20, default=None)
+    Model = models.CharField(max_length=20, default=None)
+
+    def __str__(self):
+        return self.Device_Tag
+
+
+class Mouse(models.Model):
+    Device_Tag = models.CharField(max_length=20, default=None)
+    Model = models.CharField(max_length=20, default=None)
+
+    def __str__(self):
+        return self.Device_Tag
+
+
+class Dongle(models.Model):
+    PhoneNO = models.CharField(max_length=20, default=None)
+    Provider = models.CharField(max_length=20, default=None)
+
+    def __str__(self):
+        return self.Provider
+
+
+class CompanyAssets(models.Model):
+    Name = models.ForeignKey(TeamMembers, blank=False, default=1)
+    laptop = models.ForeignKey(Laptop,blank=False, default=1)
+    keyboard = models.ForeignKey(KeyBoard, blank=False, default=1)
+    mouse = models.ForeignKey(Mouse, blank=False, default=1)
+    dongle = models.ForeignKey(Dongle, blank=False, default=1)
+
+
+
+class UserAssignedAccessories(models.Model):
+    Name = models.ForeignKey(TeamMembers, blank=False, default=1)
+    Webcam = models.BooleanField(null=False, default=0)
+    Dock = models.BooleanField(null=False, default=0)
+    Adopter = models.BooleanField(null=False, default=0)
+    SpikeGuard = models.BooleanField(null=False, default=0)
+    HeadPhone = models.BooleanField(null=False, default=0)
+    Quantity = models.CharField(max_length=20, default=None)

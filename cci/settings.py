@@ -83,7 +83,7 @@ WSGI_APPLICATION = 'cci.wsgi.application'
 DATABASES = {
     'default': {
             'ENGINE': 'sql_server.pyodbc',
-            'NAME': '1234',
+            'NAME': 'Orga',
             'USER': 'sa',
             'PASSWORD': 'sa123456#',
             'HOST': 'CCI-LPT-85\MSSQLSERVER2K14E',
