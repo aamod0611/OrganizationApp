@@ -111,7 +111,7 @@ class Laptop(models.Model):
     Service_Date = models.DateField(max_length=8,default=None)
 
     def __str__(self):
-        return self.Sr_No
+        return self.Device_Tag
 
 class KeyBoard(models.Model):
     Device_Tag = models.CharField(max_length=20, default=None)

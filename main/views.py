@@ -1,7 +1,7 @@
 from django.views import generic
 from django.views.generic.edit import CreateView, DeleteView,UpdateView
 from django.core.urlresolvers import reverse_lazy
-from . models import TeamMembers, Teams, CciGroups,CompanyAssets,UserAssignedAccessories
+from . models import TeamMembers, Teams, CciGroups,CompanyAssets,UserAssignedAccessories,Laptop,Mouse,Dongle,KeyBoard
 from django.db.models.deletion import ProtectedError
 from django.shortcuts import render,redirect,render_to_response
 from django.http import Http404
@@ -61,8 +61,11 @@ class IndexView(generic.ListView):
         context['nonbillable'] = all_teamMembers
         return context
 
-
-
+@method_decorator(login_required, name='dispatch')
+class LaptopDetailView(generic.DetailView):
+    model = Laptop
+    context_object_name = 'LaptopInfo'
+    template_name = 'Laptop_Info.html'
 
 
 @method_decorator(login_required, name='dispatch')
@@ -75,6 +78,10 @@ class DetailView(generic.DetailView):
         context = super(DetailView, self).get_context_data(**kwargs)
         context['Assets'] = CompanyAssets.objects.filter(Name_id=self.kwargs['pk'])
         context['Accessories'] = UserAssignedAccessories.objects.filter(Name_id=self.kwargs['pk'])
+        context['laptopinfo'] = Laptop.objects.filter(companyassets=self.kwargs['pk'])
+        context['Mouseinfo'] = Mouse.objects.filter(companyassets=self.kwargs['pk'])
+        context['Dongleinfo'] = Dongle.objects.filter(companyassets=self.kwargs['pk'])
+        context['keyboardinfo'] = KeyBoard.objects.filter(companyassets=self.kwargs['pk'])
         return context
 
 

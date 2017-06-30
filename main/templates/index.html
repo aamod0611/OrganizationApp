@@ -52,7 +52,7 @@
 					<!-- <li><a href="/music/{{album.id}}">{{album.title}}</a></li> -->
 						<div class="col-sm-2 indpic indpic1">
 							<div class="space">
-							<div class="thumbnail"data-toggle="popover" title="Information" data-content="{{TeamMembers.Description}}">
+							<div class="thumbnail"data-toggle="popover" title="{{TeamMembers.Designation}}" data-content="{{TeamMembers.Description}}">
 					<img src="{{TeamMembers.Pic.url}}">
 								<div class="namecent">
 					 <a href="{% url 'main:details' TeamMembers.id %}">{{TeamMembers.Name}}</a>

@@ -18,6 +18,7 @@ urlpatterns = [
         url(r'^main/index/search/?$', login_required(views.search), name='search'),
         url(r'^main/index/$', login_required(views.IndexView.as_view()), name='index'),
 
+        url(r'^main/Laptopdetail/(?P<pk>[0-9]+)$', login_required(views.LaptopDetailView.as_view()), name='LaptopDetail'),
 
         url(r'^(?P<pk>[0-9]+)$', login_required(views.DetailView.as_view()), name='details'),
         #url(r'^(?P<pk>[0-9]+)$', views.DetailView.as_view(), name='details'),

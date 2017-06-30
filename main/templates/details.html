@@ -56,30 +56,32 @@
 		  <h3>Personal Assets</h3>
 		</div>
 		  <div id="company" class="tab-pane fade marbtm">
-			    <div class="col-sm-4">
-              {% if Assets %}
-              {% for TeamMembers in Assets %}
-               <h5 class="text-size-details1">Name:</h5><h4 class="detailname">{{TeamMembers.Name}}</h4>
-              <h5 class="text-size-details1">laptop:</h5><h4 class="detailname">{{TeamMembers.laptop}}</h4>
-              <h5 class="text-size-details1">keyboard:</h5><h4 class="detailname">{{TeamMembers.keyboard}}</h4>
-              <h5 class="text-size-details1">mouse:</h5><h4 class="detailname">{{TeamMembers.mouse}}</h4>
-              <h5 class="text-size-details1">dongle:</h5><h4 class="detailname">{{TeamMembers.dongle}}</h4>
-              {% endfor %}
-              {% else %}
-			<h3>you don't have any Assets</h3>
-		{% endif %}
+                <div class="col-sm-4">
+                {% if Assets %}
+                {% for TeamMembers in Assets %}
+                <h5 class="text-size-details1">Name:</h5><h4 class="detailname">{{TeamMembers.Name}}</h4>
+                <h5 class="text-size-details1">laptop:</h5><h4 class="detailname"><a href="{% url 'main:LaptopDetail' TeamMembers.id %}">{{TeamMembers.laptop}}</a><a class="flrt" href = "javaScript:void(0);" data-toggle="modal" data-target="#myModal">Details</a></h4>
+                <h5 class="text-size-details1">keyboard:</h5><h4 class="detailname">{{TeamMembers.keyboard}}<a class="flrt" href = "javaScript:void(0);" data-toggle="modal" data-target="#keyboard">Details</a></h4>
+                <h5 class="text-size-details1">mouse:</h5><h4 class="detailname">{{TeamMembers.mouse}}<a class="flrt" href = "javaScript:void(0);" data-toggle="modal" data-target="#mouse">Details</a></h4>
+                <h5 class="text-size-details1">dongle:</h5><h4 class="detailname">{{TeamMembers.dongle}}<a class="flrt" href = "javaScript:void(0);" data-toggle="modal" data-target="#Dongle">Details</a></h4>
+
+
+                {% endfor %}
+                {% else %}
+                <h3>you don't have any Assets</h3>
+                {% endif %}
                 </div>
-              <div class="col-sm-1">
-          </div>
-          <div class="col-sm-4">
-               {% for TeamMembers in Accessories %}
-               <h5 class="text-size-details1">Webcam:</h5><h4 class="detailname">{{TeamMembers.Webcam}}</h4>
-               <h5 class="text-size-details1">Dock:</h5><h4 class="detailname">{{TeamMembers.Dock}}</h4>
-               <h5 class="text-size-details1">Adopter:</h5><h4 class="detailname">{{TeamMembers.Adopter}}</h4>
-               <h5 class="text-size-details1">SpikeGuard:</h5><h4 class="detailname">{{TeamMembers.SpikeGuard}}</h4>
-               <h5 class="text-size-details1">HeadPhone:</h5><h4 class="detailname">{{TeamMembers.HeadPhone}}</h4>
-               {% endfor %}
-          </div>
+                <div class="col-sm-1">
+                </div>
+                <div class="col-sm-4">
+                {% for TeamMembers in Accessories %}
+                <h5 class="text-size-details1">Webcam:</h5><h4 class="detailname">{{TeamMembers.Webcam}}</h4>
+                <h5 class="text-size-details1">Dock:</h5><h4 class="detailname">{{TeamMembers.Dock}}</h4>
+                <h5 class="text-size-details1">Adopter:</h5><h4 class="detailname">{{TeamMembers.Adopter}}</h4>
+                <h5 class="text-size-details1">SpikeGuard:</h5><h4 class="detailname">{{TeamMembers.SpikeGuard}}</h4>
+                <h5 class="text-size-details1">HeadPhone:</h5><h4 class="detailname">{{TeamMembers.HeadPhone}}</h4>
+                {% endfor %}
+                </div>
 		  </div>
 	</div>
   </div>
@@ -89,6 +91,177 @@
 </div>
  </div>
 </div>
+
+            <div id="myModal" class="modal fade" role="dialog">
+			  <div class="modal-dialog">
+				<!-- Modal content-->
+				<div class="modal-content">
+				  <div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title">Details</h4>
+				  </div>
+
+				  <div class="modal-body">
+
+
+      {% if laptopinfo %}
+                       {% for lapinfo in laptopinfo %}
+
+                      <div class="row">
+        <div class="col-sm-4">
+            <h5 class="text-size-details">Model:</h5><h4 class="detailname">{{lapinfo.Model}}</h4>
+            <h5 class="text-size-details">Device_Tag:</h5><h4 class="detailname">{{lapinfo.Device_Tag}}</h4>
+            <h4 class="text-size-details">Sr No:</h4><h4 class="detailname">{{lapinfo.Sr_No}}</h4>
+            <h4 class="text-size-details">Memory Speed:</h4><h4 class="detailname">{{lapinfo.Mem_Speed}}</h4>
+            <h4 class="text-size-details">OS:</h4><h4 class="detailname">{{lapinfo.OS}}</h4>
+        </div>
+            <div class="col-sm-1">
+          </div>
+          <div class="col-sm-4">
+            <h4 class="text-size-details">RAM:</h4><h4 class="detailname">{{lapinfo.RAM}}</h4>
+            <h4 class="text-size-details">Processor:</h4><h4 class="detailname">{{lapinfo.Processor}}</h4>
+            <h4 class="text-size-details">Purchased Date:</h4><h4 class="detailname">{{lapinfo.Purchased_Date }}</h4>
+            <h4 class="text-size-details">Purchased From:</h4><h4 class="detailname">{{lapinfo.Purchased_From }}</h4>
+            <h4 class="text-size-details">Service Date:</h4><h4 class="detailname">{{lapinfo.Service_Date  }}</h4>
+          </div>
+                          </div>
+                   {% endfor %}
+        {% else %}
+        <h5>No Laptop Details </h5>
+	    {% endif %}
+
+		</div>
+				  <div class="modal-footer">
+
+				  </div>
+				</div>
+
+			  </div>
+			</div>
+
+
+
+
+
+        <div id="mouse" class="modal fade" role="dialog">
+			  <div class="modal-dialog">
+				<!-- Modal content-->
+				<div class="modal-content">
+				  <div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title">Details</h4>
+				  </div>
+				  <div class="modal-body">
+
+
+      {% if Mouseinfo %}
+                       {% for mouinfo in Mouseinfo %}
+                         <div class="row">
+        <div class="col-sm-4">
+            <h5 class="text-size-details">Model:</h5><h4 class="detailname">{{mouinfo.Model}}</h4>
+            <h5 class="text-size-details">Device_Tag:</h5><h4 class="detailname">{{mouinfo.Device_Tag}}</h4>
+        </div>
+                         </div>
+                   {% endfor %}
+        {% else %}
+        <h5>No Mouse Details </h5>
+	    {% endif %}
+
+		</div>
+				  <div class="modal-footer">
+
+				  </div>
+				</div>
+
+			  </div>
+			</div>
+
+
+
+
+
+
+
+
+
+
+
+         <div id="Dongle" class="modal fade" role="dialog">
+			  <div class="modal-dialog">
+				<!-- Modal content-->
+				<div class="modal-content">
+				  <div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title">Details</h4>
+				  </div>
+				  <div class="modal-body">
+
+
+      {% if Dongleinfo %}
+                       {% for Dgleinfo in Dongleinfo %}
+                         <div class="row">
+        <div class="col-sm-4">
+            <h5 class="text-size-details">PhoneNO:</h5><h4 class="detailname">{{Dgleinfo.PhoneNO}}</h4>
+            <h5 class="text-size-details">Provider:</h5><h4 class="detailname">{{Dgleinfo.Provider}}</h4>
+        </div>
+                         </div>
+                   {% endfor %}
+        {% else %}
+        <h5>No Dongle Details </h5>
+	    {% endif %}
+
+		</div>
+				  <div class="modal-footer">
+
+				  </div>
+				</div>
+
+			  </div>
+			</div>
+
+
+
+
+
+
+
+
+
+
+         <div id="keyboard" class="modal fade" role="dialog">
+			  <div class="modal-dialog">
+				<!-- Modal content-->
+				<div class="modal-content">
+				  <div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title">Details</h4>
+				  </div>
+				  <div class="modal-body">
+
+
+      {% if keyboardinfo %}
+                       {% for keyinfo in keyboardinfo %}
+                         <div class="row">
+         <div class="col-sm-4">
+            <h5 class="text-size-details">Model:</h5><h4 class="detailname">{{keyinfo.Model}}</h4>
+            <h5 class="text-size-details">Device_Tag:</h5><h4 class="detailname">{{keyinfo.Device_Tag}}</h4>
+        </div>
+                         </div>
+                   {% endfor %}
+        {% else %}
+        <h5>No Dongle Details </h5>
+	    {% endif %}
+
+		</div>
+				  <div class="modal-footer">
+
+				  </div>
+				</div>
+
+			  </div>
+			</div>
+
+
 {% endblock %}
     </div>
 </div>

@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+<div class="Container">
+	<div class="row">
+{% block body %}
+
+	<div class="Team-Details-info">
+		<div class="container-fluid">
+			<div class="username">
+				<div class="col-sm-8">
+					<h2>Laptop Info</h2>
+				</div>
+				<div class="col-sm-2 usetop-pad">
+					{% if user.is_authenticated %}
+        				<p class="usepadding">Welcome: {{ user.username }}     </p>
+    				{% endif %}
+				</div>
+				<div class="col-sm-2 usetop-padsearch ">
+					<form type="get" action="{% url 'main:search' %}" style="margin: 0">
+    					<input autocomplete="off"  id="search_box" type="text" name="search_box"  placeholder="Search..." >
+    					<!--<button id="search_submit" type="submit" ><i class="fa fa-search" aria-hidden="true"></i></button>-->
+					</form>
+				</div>
+		</div>
+    </div>
+
+</div>
+        {% if LaptopInfo %}
+        <div class="col-sm-4">
+            <h5 class="text-size-details">Model:</h5><h4 class="detailname">{{LaptopInfo.Model}}</h4>
+            <h5 class="text-size-details">Device_Tag:</h5><h4 class="detailname">{{LaptopInfo.Device_Tag}}</h4>
+            <h4 class="text-size-details">Sr No:</h4><h4 class="detailname">{{LaptopInfo.Sr_No}}</h4>
+            <h4 class="text-size-details">Memory Speed:</h4><h4 class="detailname">{{LaptopInfo.Mem_Speed}}</h4>
+            <h4 class="text-size-details">OS:</h4><h4 class="detailname">{{LaptopInfo.OS}}</h4>
+        </div>
+            <div class="col-sm-1">
+          </div>
+          <div class="col-sm-4">
+            <h4 class="text-size-details">RAM:</h4><h4 class="detailname">{{LaptopInfo.RAM}}</h4>
+            <h4 class="text-size-details">Processor:</h4><h4 class="detailname">{{LaptopInfo.Processor}}</h4>
+            <h4 class="text-size-details">Purchased Date:</h4><h4 class="detailname">{{LaptopInfo.Purchased_Date }}</h4>
+            <h4 class="text-size-details">Purchased From:</h4><h4 class="detailname">{{LaptopInfo.Purchased_From }}</h4>
+            <h4 class="text-size-details">Service Date:</h4><h4 class="detailname">{{LaptopInfo.Service_Date  }}</h4>
+           </div>
+
+            asdasd
+
+
+        {% else %}
+        <h5>No Laptop Details </h5>
+	    {% endif %}
+
+
+
+ {% endblock %}
+	</div>
+</div>
